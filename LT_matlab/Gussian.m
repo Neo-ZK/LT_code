@@ -1,5 +1,5 @@
 function [ H_in,code_in ] = Gussian( H_in,code_in )
-    for col_index = 1:size(H_in,2)
+    for col_index = 1:min(size(H_in,1),size(H_in,2))
         row_pos = find(H_in(:,col_index) ~= 0);
         if(isempty(row_pos))
             return;

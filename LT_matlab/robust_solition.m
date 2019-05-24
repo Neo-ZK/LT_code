@@ -1,4 +1,4 @@
-function [ distribution_matrix ] = robust_solition( packet_num,redundancy )
+function [ distribution_matrix ] = robust_solition( packet_num )
     %理想孤波分布
     
     p_ideal = zeros(1,packet_num);
@@ -7,6 +7,12 @@ function [ distribution_matrix ] = robust_solition( packet_num,redundancy )
         p_ideal(i) = 1/(i*(i-1));
     end
 
+    figure(2)
+    bar(p_ideal)
+    xlabel('Degree')
+    ylabel('Frequency')
+    axis([0 50 0 0.5])
+    title('理想孤波分布')
 
     %鲁棒孤波分布
     %参数
@@ -37,8 +43,14 @@ function [ distribution_matrix ] = robust_solition( packet_num,redundancy )
     temp_sum = sum(distribution_matrix_prob);
     distribution_matrix_prob = distribution_matrix_prob .* (1/temp_sum);
     real_degree_max = length(distribution_matrix_prob);
-    
+    figure(3)
+    bar(distribution_matrix_prob)
+    xlabel('Degree')
+    ylabel('Frequency')
+    title('鲁棒孤波分布')
+    axis([0 50 0 0.5])
+
     %distribution_matrix = randsample(1:real_degree_max,packet_num*(1+redundancy),'true',distribution_matrix_prob);
-    distribution_matrix = randsrc(packet_num*(1+redundancy),1,[1:real_degree_max;distribution_matrix_prob]);
+    distribution_matrix = randsrc(ceil(packet_num),1,[1:real_degree_max;distribution_matrix_prob]);
 end
 

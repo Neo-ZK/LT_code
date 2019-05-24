@@ -1,7 +1,7 @@
 function [H,code_encode] = LT_encode( source_code,redundancy )
 
     packet_num = size(source_code,1);
-    packet_encode_num = packet_num * (1 + redundancy);
+    packet_encode_num = ceil(packet_num * (1 + redundancy));
     pakcet_length = size(source_code,2);
     code_encode = zeros(packet_encode_num,pakcet_length);
     %Â³°ô¹Â²¨·Ö²¼
