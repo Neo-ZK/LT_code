@@ -14,7 +14,7 @@ decode_tag = 1;
 
 
 %ÎóÂëÂÊ
-ser_matrix = 10e-5;
+ser_matrix = 1e-5;
 
 
 packet_loss_num = 0;

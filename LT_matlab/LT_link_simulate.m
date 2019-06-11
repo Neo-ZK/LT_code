@@ -19,19 +19,20 @@ function [ send_packet ] = LT_link_simulate(packet_num,packet_length,decode_tag,
         send_packet = 0;
 
         %鲁棒孤波分布
-        distribution_matix = robust_solition(packet_num);  
+        distribution_matrix_prob = robust_solition(packet_num);  
 
         success_tag = 0;
         while(~success_tag)
             %得到本次发送度数
-            send_degree = distribution_matix(randi(size(distribution_matix,1))); 
+            send_degree = randsrc(1,1,[1:size(distribution_matrix_prob,2);distribution_matrix_prob]);
+            %send_degree = distribution_matix(randi(size(distribution_matix,1))); 
             
             %编码初始化
             H = zeros(1,packet_num);
             code_encode = zeros(1,packet_length);
             message_encode_pos = [];
 
-            %根据度数进行编码   
+            %随机挑选度数个原始数据包   
             i = 1;
             while i <= send_degree
                 i = i + 1;
@@ -44,7 +45,7 @@ function [ send_packet ] = LT_link_simulate(packet_num,packet_length,decode_tag,
                 end
             end    
 
-            %编码    
+            %对挑选出的原始数据包进行异或编码    
             for i = 1:size(message_encode_pos,2)            
                 code_encode =  rem(code_encode+message_matrix(message_encode_pos(i),:),2);
             end  
