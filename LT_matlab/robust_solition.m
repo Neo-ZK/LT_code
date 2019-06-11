@@ -49,8 +49,5 @@ function [ distribution_matrix_prob ] = robust_solition( packet_num )
     ylabel('Frequency')
     title('Â³°ô¹Â²¨·Ö²¼')
     axis([0 50 0 0.5])
-
-    %distribution_matrix = randsample(1:real_degree_max,packet_num*(1+redundancy),'true',distribution_matrix_prob);
-    %distribution_matrix = randsrc(ceil(packet_num),1,[1:real_degree_max;distribution_matrix_prob]);
 end
 

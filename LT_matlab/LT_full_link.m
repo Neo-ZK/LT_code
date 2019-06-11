@@ -10,11 +10,11 @@ speed = 100000;
 send_bit_matrix_orig_mat = zeros(1,50);send_bit_matrix_orig_mat1 = zeros(1,50);
 
 %译码算法--2为GE，1为BP
-decode_tag = 1;
+decode_tag = 2;
 
 
 %误码率
-ser_matrix = 1e-5;
+ser_matrix = 1e-4;
 
 
 packet_loss_num = 0;

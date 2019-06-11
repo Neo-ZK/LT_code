@@ -4,19 +4,13 @@ function [ send_packet ] = LT_link_simulate(packet_num,packet_length,decode_tag,
         %消息矩阵
         message_matrix = randi([0 1],packet_num,packet_length);
 
-        % %初始化接收方——高斯消元
-        % H_decode = []; 
-        % code_decode = []; 
-        % success_tag = 1;
-        % receive_packet = 0;
-
-        %初始化接收方--BP译码
-        rank_statistic = [0];
+        %初始化接收方
+        rank_statistic = [0]; %统计量，秩反映出当前译码成功的数据包数
         H_decode = zeros(packet_num,packet_num);
         code_decode = zeros(packet_num,packet_length);
 
-        receive_packet = 0;  
-        send_packet = 0;
+        receive_packet = 0;  %表示接收方译码成功时实际接收到的数据包
+        send_packet = 0; %发送方发送的数据总数
 
         %鲁棒孤波分布
         distribution_matrix_prob = robust_solition(packet_num);  
@@ -24,8 +18,7 @@ function [ send_packet ] = LT_link_simulate(packet_num,packet_length,decode_tag,
         success_tag = 0;
         while(~success_tag)
             %得到本次发送度数
-            send_degree = randsrc(1,1,[1:size(distribution_matrix_prob,2);distribution_matrix_prob]);
-            %send_degree = distribution_matix(randi(size(distribution_matix,1))); 
+            send_degree = randsrc(1,1,[1:size(distribution_matrix_prob,2);distribution_matrix_prob]);           
             
             %编码初始化
             H = zeros(1,packet_num);
