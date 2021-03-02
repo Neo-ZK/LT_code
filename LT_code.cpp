@@ -171,8 +171,8 @@ void LT_code::encodeAndsend()
 
 /************************************************************************/
 /* fun:generate degree distribution based on robust solition            */
-/* Entrance:packet_num:message packet num. redundacy:encoding redundancy
-/* Return:degree distribution
+/* Entrance:packet_num:message packet num. redundacy:encoding redundancy */
+/* Return:degree distribution */
 /************************************************************************/
 
 int* LT_code::robust_solition(int packet_num,double redundancy)
